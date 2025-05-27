@@ -21,39 +21,52 @@ typedef struct node
 // functions prototype
 void Error_Msg(char* str);
 std* FromFileToList(FILE *in);
-std* Delete_Stud(std* toDel,std* head);
+std* Delete_Stud(std* toDel, std* head);
 std* DeleteList(std* head);
 void PrintList(std* head);
 std* FindMax(std* head);
-void freeAll(std**);
 
 int main()
 {
 	int i;
-	FILE *f;
-	std *Head=NULL, *temp;
+	FILE* f;
+	std* Head = NULL,* temp;
 
-	if((f=fopen("List.txt","rt")) == NULL)
-           Error_Msg("input error");
-	Head=FromFileToList(f);
-        if(Head == NULL)
-          Error_Msg("The input file is empty");
+	if ((f = fopen("List.txt", "rt")) == NULL)
+    {
+        Error_Msg("input error");
+    }
 
-        fclose(f);
-	printf("\nThe list is:");
+    Head = FromFileToList(f);
+    if (Head == NULL)
+    {
+        Error_Msg("The input file is empty");
+    }
+
+    fclose(f);
+
+	printf("\nThe list is:\n");
 	PrintList(Head);
 	
 	temp = FindMax(Head);
-        printf("\n\nthe student with max average:\n");
-	printf("%s %s %s ",temp->code,temp->name,temp->Dep);
-        for(i=0;i<3;i++)
-          printf(" %d ",temp->marks[i]);
+    
+    printf("The student with max average:\n");
+	printf("%s %s %s ", temp->code, temp->name, temp->Dep);
 
-	printf("\n\nThe list after change:");
-	Head=Delete_Stud(FindMax(Head),Head);
+    for(i = 0; i < MARKS; i++)
+    {
+        printf("%d ", temp->marks[i]);
+    }
+    printf("\n");
+
+    Head = Delete_Stud(temp, Head);
+
+	printf("\nThe list after change:\n");
 	PrintList(Head);
-	Head = DeleteList(Head);        /*Head = NULL */
-        return 0;
+
+	Head = DeleteList(Head); // Head = NULL
+    
+    return 0;
 }
 
 // creates nodes, receives input for each, builds a linked list
@@ -67,7 +80,7 @@ std* FromFileToList(FILE *in)
         // allocate for new student
         if ((temp = (std*)malloc(sizeof(std))) == NULL)
         {
-            freeAll(&head);
+            DeleteList(head);
             Error_Msg("Error allocating new std.\n");
         }
 
@@ -82,7 +95,7 @@ std* FromFileToList(FILE *in)
         // allocate for name
         if ((temp->name = (char*)malloc(strlen(buffer) + 1)) == NULL) 
         {            
-            freeAll(&head);
+            DeleteList(head);
             Error_Msg("Error allocating name.\n");
         }
         strcpy(temp->name, buffer);
@@ -104,35 +117,82 @@ void Error_Msg(char* str)
         exit(1);
 }
 
-void freeAll(std** head)
+// frees the names and the entire linked list
+std* DeleteList(std* head)
 {
-    std* temp = *head;
+    std* temp = head;
 
-    while (*head != NULL)
+    while (head != NULL)
     {
-        (*head) = (*head)->next;
+        head = head->next;
 
         free(temp->name); // free name 
         free(temp); // free node
 
-        temp = *head;
+        temp = head;
+    }
+
+    return head;
+}
+
+// print all fields of the list
+void PrintList(std* head)
+{
+    std* temp = head;
+
+	while (temp != NULL)
+    {
+		printf("%s %s %s %d %d %d\n", temp->code, temp->name, temp->Dep, 
+            temp->marks[MARKS - 3], temp->marks[MARKS - 2], temp->marks[MARKS - 1]);
+
+        temp = temp->next;
+	}
+    printf("\n");
+}
+
+// return the address of the maximum average in linked list
+std* FindMax(std* head)
+{
+    if (head == NULL) return NULL;
+    if (head->next == NULL) return head;
+
+    std* max = FindMax(head->next);
+
+    if (head->avg > max->avg)
+    {
+        return head;
+    }
+    else
+    {
+        return max;
     }
 }
 
-
-
-std* Delete_Stud(std* toDel,std* head)
+// remove student with max average
+std* Delete_Stud(std* toDel, std* head)
 {
-  if(head == NULL)
-    return NULL;
+  if (head == NULL) return NULL;
 
-  if(toDel==head)
+  if (toDel == head)
   {
-
+    head = head->next;
+    free(toDel->name);
+    free(toDel);
   }
+
   else
   {
+    std* temp = head;
 
+    while (temp->next != toDel)
+    {
+        temp = temp->next;
+    }
+
+    temp->next = toDel->next;
+    free(toDel->name);
+    free(toDel);
   }
+
   return head;
 }
