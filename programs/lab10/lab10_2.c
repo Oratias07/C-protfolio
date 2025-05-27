@@ -32,7 +32,7 @@ int main()
 	FILE* f;
 	std* Head = NULL,* temp;
 
-	if ((f = fopen("List.txt", "rt")) == NULL)
+	if ((f = fopen("List1.txt", "rt")) == NULL)
     {
         Error_Msg("input error");
     }
@@ -86,7 +86,7 @@ std* FromFileToList(FILE *in)
 
         // pulling data from the file
         if ((fscanf(in, "%s %s %s %d %d %d", temp->code, buffer, temp->Dep, 
-            &temp->marks[MARKS - 3], &temp->marks[MARKS - 2], &temp->marks[MARKS - 1])) != 6) 
+            &temp->marks[MARKS - 3], &temp->marks[MARKS - 2], &temp->marks[MARKS - 1])) < 6) 
         {
             free(temp);
             break; // exit on EOF or bad format

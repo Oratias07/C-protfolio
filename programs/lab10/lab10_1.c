@@ -32,7 +32,7 @@ int main()
         }
 
         printf("Enter a new code and name: ");
-        if (scanf("%d %s", &temp->code, temp->name) != 2)
+        if (scanf("%d %s", &temp->code, temp->name) < 2)
         {
             printf("Error reading new code or name.\n");
             return 1;
