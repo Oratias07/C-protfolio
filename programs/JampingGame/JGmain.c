@@ -22,8 +22,8 @@ int main()
             free_list(pNodes_list);
             error_message("Error allocating new k.\n");
         }
-        // k_node->next = NULL;
-        // k_node->prev = NULL;
+        k_node->next = NULL;
+        k_node->prev = NULL;
 
         printf("step number %d: ", i);
         if ((scanf("%d", &k_node->k)) < 1)
