@@ -1,6 +1,6 @@
 #include "JGheader.h"
 
-// adds an node to the head of the node_list
+// adds an node to the head of the node list
 void add_as_first(kNode* node, pNodeList* node_list)
 {
     if ((*node_list) == NULL || (*node) == NULL)

@@ -22,7 +22,7 @@ typedef struct nodeList
 
 
 // functions prototype
-/* adding node as first of doubly linked list */
+/* adds an node to the head of the node list */
 void add_as_first(kNode* node, pNodeList* node_list);
 
 /**/

@@ -4,7 +4,6 @@ int main()
 {
     pNodeList pNodes_list; // pointer for k list nodes
     kNode k_node; // pointer for k node
-    int i = 0;
 
     // define for START
     pNodes_list->num_of_step = 0;
@@ -25,7 +24,7 @@ int main()
         k_node->next = NULL;
         k_node->prev = NULL;
 
-        printf("step number %d: ", i);
+        printf("step number %d: ", pNodes_list->num_of_step + 1);
         if ((scanf("%d", &k_node->k)) < 1)
         {
             free_list(pNodes_list);
@@ -34,6 +33,5 @@ int main()
 
         add_as_first(k_node, pNodes_list);
 
-        i++;
     }
 }
