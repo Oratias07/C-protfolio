@@ -15,19 +15,30 @@ typedef struct kNode
 
 typedef struct nodeList
 {
-    kNode* head;
-    kNode* tail;
+    kNode head;
+    kNode tail;
     int num_of_step;
 } *pNodeList;
 
 
 // functions prototype
 /* adds an node to the head of the node list */
-void add_as_first(kNode* node, pNodeList* node_list);
+void add_as_first(kNode node, pNodeList node_list);
 
-/**/
+/* frees the list */
+void free_all(pNodeList list);
 
-/**/
+/* print error message and exit program */
+void error_message(char* str);
+
+/* the game runs in a loop until a stopping condition is met */
+int game_on(pNodeList pNodes_list, int max_steps);
+
+/* printing doubly linked list */
+void print_list(kNode node);
+
+/* delete the current node */
+void delete_current(pNodeList pNodes_list, kNode current);
 
 
 #endif
