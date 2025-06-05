@@ -1,10 +1,10 @@
-#ifndef _JAMPING_GAME_HEADER_
-#define _JAMPING_GAME_HEADER_
+#ifndef _JUMPING_GAME_HEADER_
+#define _JUMPING_GAME_HEADER_
 
 #define _CRT_SECURE_NO_WARNINGS
 #define N 10
 #include <stdio.h>
-#include <stdlib.h> ///////?
+#include <stdlib.h>
 
 // structures
 typedef struct kNode

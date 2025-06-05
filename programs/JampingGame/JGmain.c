@@ -8,7 +8,7 @@ int main()
     int steps; // number of rounds in the game
 
     // define for START
-    if (pNodes_list == NULL) error_message("Error allocatinf failed.\n");
+    if (pNodes_list == NULL) error_message("Error allocating failed.\n");
     pNodes_list->num_of_step = 0;
     pNodes_list->head = NULL;
     pNodes_list->tail = NULL;
@@ -23,7 +23,7 @@ int main()
         if ((k_node = (kNode)malloc(sizeof(*k_node))) == NULL)
         {
             free_all(pNodes_list);
-            error_message("Error allocating new k.\n");
+            error_message("Error allocating new node.\n");
         }
 
         k_node->next = NULL;
@@ -33,7 +33,7 @@ int main()
         if ((scanf("%d", &k_node->k)) < 1)
         {
             free_all(pNodes_list);
-            error_message("Error reading k number.\n");
+            error_message("Error reading node number.\n");
         }
 
         add_as_first(k_node, pNodes_list);

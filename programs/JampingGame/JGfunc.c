@@ -34,7 +34,6 @@ int game_on(pNodeList pNodes_list, int max_steps)
     while (1)
     {
         steps++;
-        k_current = current->k;
 
         if (current == NULL) // beyond the boundaries
         {
@@ -42,7 +41,8 @@ int game_on(pNodeList pNodes_list, int max_steps)
             break;
         }
 
-        else if (k_current == 0) // reached a dead end
+        k_current = current->k;
+        if (k_current == 0) // reached a dead end
         {
             printf("You reached a dead end!\n");
             break;
@@ -74,21 +74,22 @@ int game_on(pNodeList pNodes_list, int max_steps)
     return steps; // total number of rounds
 }
 
-/* printing doubly linked list */
+/* printing the doubly linked list */
 void print_list(kNode node)
 {
-    kNode temp = node;
+    if (node == NULL) {
+        printf("The list is empty.\n");
+        return;
+    }
 
-    if (temp != NULL)
+    printf("%d", node->k);
+    if (node->next != NULL) 
     {
-		printf("%d", temp->k);
-		if (temp->next != NULL) printf(" --> ");
-		
-		return ListDisplay(temp->next);
-	}
-	printf("\n\n");
-
-	return;
+        printf(" --> ");
+        print_list(node->next);
+    } 
+    
+    else printf("\n");
 }
 
 /* delete the current node */
@@ -120,7 +121,7 @@ void free_all(pNodeList list)
 {
     kNode temp;
 
-    while (temp)
+    while (list->head)
     {
         temp = list->head;
         list->head = list->head->next;
