@@ -5,6 +5,7 @@
 #define N 10
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 // structures
 typedef struct kNode
