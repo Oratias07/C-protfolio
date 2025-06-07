@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/OrAtias/OneDrive - Braude College of Engineering/Desktop/Software Engineering/VScode/c-protfolio/C-protfolio",
-      "program": "c:/Users/OrAtias/OneDrive - Braude College of Engineering/Desktop/Software Engineering/VScode/c-protfolio/C-protfolio/build/Debug/outDebug",
+      "cwd": "c:/Users/OrAtias/OneDrive - Braude College of Engineering/Desktop/Software Engineering/VScode/c-protfolio/C-protfolio/programs/JampingGame",
+      "program": "c:/Users/OrAtias/OneDrive - Braude College of Engineering/Desktop/Software Engineering/VScode/c-protfolio/C-protfolio/programs/JampingGame/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -1,5 +1,5 @@
-#ifndef _JUMPING_GAME_HEADER_
-#define _JUMPING_GAME_HEADER_
+#ifndef _JAMPING_GAME_HEADER_
+#define _JAMPING_GAME_HEADER_
 
 #define _CRT_SECURE_NO_WARNINGS
 #define N 10
@@ -10,20 +10,20 @@
 typedef struct kNode
 {
     int k;
-    struct kNode* prev,* next;
-} *kNode;
+    struct kNode* prev, * next;
+} *PkNode;
 
 typedef struct nodeList
 {
-    kNode head;
-    kNode tail;
+    PkNode head;
+    PkNode tail;
     int num_of_step;
 } *pNodeList;
 
 
 // functions prototype
 /* adds an node to the head of the node list */
-void add_as_first(kNode node, pNodeList node_list);
+void add_as_first(PkNode node, pNodeList node_list);
 
 /* frees the list */
 void free_all(pNodeList list);
@@ -35,10 +35,10 @@ void error_message(char* str);
 int game_on(pNodeList pNodes_list, int max_steps);
 
 /* printing doubly linked list */
-void print_list(kNode node);
+void print_list(PkNode node);
 
 /* delete the current node */
-void delete_current(pNodeList pNodes_list, kNode current);
+void delete_current(pNodeList pNodes_list, PkNode current);
 
 
 #endif
