@@ -96,9 +96,7 @@ int game_on(pNodeList pNodes_list, int max_steps)
 
                 if (current == NULL)
                 {
-                    break;
-                    //printf("\nGoing beyond the boundaries of the game!\n");
-                    //break; // beyond the boundaries (ends the loop in the next iteration)
+                    break; // beyond the boundaries (ends the loop in the next iteration)
                 }
             }
         }
