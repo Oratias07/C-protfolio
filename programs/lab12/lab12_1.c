@@ -1,110 +1,33 @@
 # define _CRT_SECURE_NO_WARNINGS
 # include <stdio.h>
 # include <stdlib.h>
+# include <math.h>
 
-// functions pototype
-float** allocate_matrix(float**, int, int);
-void set_2d(float** a, int m, int n);
-void print_2d(float** a, int m, int n);
-void error_message(char* msg);
-void free_all(float** a, int m, int n);
+// function prototype
+double sum_square(int m, int n, float(*f)(int a));
 
 
-int main( )
+float func1(int x){ return 1.0 / x; }
+float func2(int x){ return x / 5.0; }
+
+
+int main()
 {
-	int m, n;
-	float** a;
+    float (*fp)(int); // pointer to function
 
-	printf("\nEnter m and n, for m*n array: \n");
-	if ((scanf("%d %d", &m, &n)) < 2) error_message("Error read m and n.\n");
+    fp = func2;
+    printf("\nThe sum of func2: %.5lf\n", sum_square(2, 13, fp));
 
-    a = allocate_matrix(a, m, n);
+    fp = func1;
+    printf("The sum of func1: %.5lf\n", sum_square(1, 10000, fp));
 
-    // set values and print matrix
-	set_2d(a, m, n);
-    print_2d(a, m, n);
-
-    free_all(a, m, n);
-    return 0;   
+    return 0;
 }
 
-/// @brief allocating a pointer to a pointer array
-/// @param a pointer of array of pointers
-/// @param m numbers of rows
-/// @param n numbers of columns
-/// @return the pointer of pointers
-float** allocate_matrix(float** a, int m, int n)
+/* calculating the sum of square of f function (sum from m to n) and returning */
+double sum_square(int m, int n, float(*f)(int a))
 {
-    int i, j;
+    if (m == 0 && n == 0) return 0; 
 
-    a = (float**)malloc(m * sizeof(float*));
-    if (a == NULL) error_message("Error allocated matrix.\n");
-
-    for (i = 0; i < m; i++)
-    {
-        a[i] = (float*)malloc(n * sizeof(float));
-        if (a[i] == NULL)
-        {
-            for (j = 0; j < i; j++) free(a[j]);
-            free(a);
-            error_message("Error allocated row.\n"); 
-        }
-    }
-
-    return a;
-}
-
-void free_all(float** a, int m, int n)
-{
-    int i;
-
-    if (a != NULL)
-    {
-        for (i = 0; i < m; i++)
-        {
-            free(a[i]);
-        }
-        free(a);
-    }
-}
-
-// set an values into 2D matrix
-void set_2d(float** a, int m, int n)
-{
-    int i, j, k = 1;
-
-    for (i = 0; i < m; i++)
-    {
-        for (j = 0; j < n; j++)
-        {
-            a[i][j] = k++;
-        }
-    }
-}
-
-// printing FLOAT matrix
-void print_2d(float **a, int m, int n)
-{
-    printf("{\n");
-
-    for (int i = 0; i < m; i++)
-    {
-        printf("{");
-
-        for (int j = 0; j < n; j++)
-        {
-            printf("%6.2f", a[i][j]);
-            if (j < n - 1) printf(", ");
-        }
-
-        (i < m - 1) ? printf("},\n") : printf("}\n");
-    }
-
-    printf("}\n");
-}
-
-void error_message(char* msg)
-{
-	printf("%s\n", msg);
-	exit(1);
+    return (m == n) ? pow(f(m), 2) : pow(f(m), 2) + sum_square(m + 1, n, f);
 }
