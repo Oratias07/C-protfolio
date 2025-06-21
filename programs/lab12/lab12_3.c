@@ -36,7 +36,7 @@ int Do_It(void* sum, void** array, void(*p_Init)(void*), void(*p_Sum)(void*, voi
     for (i = 0; i < N; i++)
     {
         // the current sum is equal to the element (if it is not the first element)
-        if (i > 0 && p_Comp(array[i], sum)) return 1;
+        if (i > 0 && p_Comp(sum, array[i])) return 1;
 
         // update the cumulative sum
         (i % 2) ? p_Sub(sum, array[i]) : p_Sum(sum, array[i]);
@@ -55,6 +55,14 @@ int main()
 
     answer = Do_It(&sum, p_num, Init, Int_Sum, Int_Sub, Int_Comp);
 
+    printf("\nFor the integer list:\n{ ");
+    for (i = 0; i < N; i++)
+    {
+        printf("%d", num[i]);
+        if (i + 1 != N) printf(", ");
+    }
+    printf(" }\n");
+    
     answer ? printf("The answer is 'Yes'.\n") : printf("The answer is 'No'.\n");
 
     return 0;
