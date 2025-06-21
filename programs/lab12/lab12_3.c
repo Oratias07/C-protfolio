@@ -1,5 +1,6 @@
 # define _CRT_SECURE_NO_WARNINGS
 # include <stdio.h>
+# include <stdlib.h>
 # define N 5
 
 
@@ -23,14 +24,20 @@ void Init(void* p)
 
 int Int_Comp(void* a, void* b)
 {
-    if (*(int*)a == *(int*)b) return 1;
-    return 0;
+    return *(int*)a == *(int*)b;
 }
     
 
 int Do_It(void* sum, void** array, void(*p_Init)(void*), void(*p_Sum)(void*, void*), void(*p_Sub)(void*, void*), int(*p_Comp)(void*, void*))
 {
     int i;
+
+    // checks if one or more function or data pointers are NULL
+    if (sum == NULL || array == NULL || p_Init == NULL || p_Sum == NULL || p_Sub == NULL || p_Comp == NULL)
+    {
+        printf("Error with pointers.\n");
+        exit(1);
+    }
 
     p_Init(sum);
     for (i = 0; i < N; i++)
