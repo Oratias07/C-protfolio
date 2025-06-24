@@ -3,7 +3,7 @@
 int main()
 {
     PStack stack;
-    int element;
+    int element, del_elem;
     
     // initialized stack
     stack->head = NULL;
@@ -21,4 +21,16 @@ int main()
 
         Push(stack, element);
     }
+    printStack(stack); // printing the stack at LIFO way
+
+    while (stack->size > 0)
+    {
+        if (Pop(stack, &del_elem))
+        {
+            printf("The value taken out is: %d.\n", del_elem);
+            PrintStack(stack);
+    }
+    printf("The stack is empty.\n");
+    
+    return 0;
 }

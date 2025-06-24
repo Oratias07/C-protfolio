@@ -27,3 +27,33 @@ void Push(PStack s, int element)
     }
     // successful pushing
 }
+
+int Pop(PStack s, int* del_value)
+{
+    Item* temp = s->head;
+
+    if (s->size < 1 || s->head == NULL) return 0;
+
+    *del_value = s->head->num;
+    s->head = s->head->next;
+    free(temp);
+    s->size--;
+
+    return 1; // successful popping
+
+}
+
+void PrintStack(Stack s)
+{
+    int i = 0;
+    printf("The members in the stack (first out- LIFO)");
+
+    printf("{ ");
+    while (i <= s.size)
+    {
+        printf("%d", s.head->num);
+        if (s.size > 1) printf(", ");
+        s.head = s.head->next;
+    }
+    printf(" }\n\n");
+}

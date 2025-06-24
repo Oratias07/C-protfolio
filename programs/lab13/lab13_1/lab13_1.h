@@ -20,6 +20,6 @@ typedef struct Stack
 
 // functions declaration
 void Push(PStack s, int new_elem); // add a new number to list of the stack
-int Pop(PStack s, int * del_cakue); // delete member from the stack and "return" the deleted value using int* del_value
+int Pop(PStack s, int* del_value); // delete member from the stack and "return" the deleted value using int* del_value
 
 # endif
