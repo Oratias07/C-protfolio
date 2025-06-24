@@ -4,7 +4,7 @@ void Push(PStack s, int element)
 {
     Item* temp;
 
-    if (s == NULL || element == NULL)
+    if (s == NULL)
     {
         printf("Push operation failed.\n");
         return;

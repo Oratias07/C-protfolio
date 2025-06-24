@@ -14,7 +14,7 @@ int main()
     stack->head = NULL;
     stack->size = 0;
 
-    printf("Please enter %d integer number to entry a stack: ", NUM);
+    printf("Please enter %d integer number to entry a stack:\n", NUM);
     while (stack->size < NUM)
     {
         printf("Number %d: ", stack->size + 1);
