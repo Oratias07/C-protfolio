@@ -1,10 +1,10 @@
-# include <lab13_1.h>
+#include "lab13_1.h"
 
 void Push(PStack s, int element)
 {
     Item* temp;
 
-    if (s->size >= NUM - 1 || s == NULL || element == NULL)
+    if (s == NULL || element == NULL)
     {
         printf("Push operation failed.\n");
         return;
@@ -45,15 +45,15 @@ int Pop(PStack s, int* del_value)
 
 void PrintStack(Stack s)
 {
-    int i = 0;
     printf("The members in the stack (first out- LIFO)");
 
     printf("{ ");
-    while (i <= s.size)
+    while (s.size > 0)
     {
         printf("%d", s.head->num);
         if (s.size > 1) printf(", ");
         s.head = s.head->next;
+        s.size--;
     }
     printf(" }\n\n");
 }

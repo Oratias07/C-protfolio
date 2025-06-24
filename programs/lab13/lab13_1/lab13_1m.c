@@ -1,10 +1,15 @@
-# include <lab13_1.h>
+#include "lab13_1.h"
 
 int main()
 {
-    PStack stack;
+    PStack stack = (Stack*)malloc(sizeof(Stack));
     int element, del_elem;
-    
+
+    if (stack == NULL)
+    {
+        printf("Error allocating stack.\n");
+        return 1;
+    }
     // initialized stack
     stack->head = NULL;
     stack->size = 0;
@@ -13,7 +18,7 @@ int main()
     while (stack->size < NUM)
     {
         printf("Number %d: ", stack->size + 1);
-        if ((scanf("%d", element)) < 1)
+        if ((scanf("%d", &element)) < 1)
         {
             printf("Error reading number to entry.\n");
             return 1;
@@ -21,16 +26,18 @@ int main()
 
         Push(stack, element);
     }
-    printStack(stack); // printing the stack at LIFO way
+    PrintStack(*stack); // printing the stack at LIFO way
 
     while (stack->size > 0)
     {
         if (Pop(stack, &del_elem))
         {
             printf("The value taken out is: %d.\n", del_elem);
-            PrintStack(stack);
+            PrintStack(*stack);
+        }
     }
     printf("The stack is empty.\n");
-    
+
+    free(stack);
     return 0;
 }
