@@ -16,6 +16,7 @@ void Push(PStack s, int element)
         if (temp == NULL)
         {
             printf("Error allocated.\n");
+            free(s);
             exit(1);
         }
 
