@@ -186,21 +186,6 @@ gcc main.c stack.c -o stack
 
 ---
 
-## 🔄 Recent Restructuring
-
-The repository has been professionally reorganized for clarity:
-- ✅ `JampingGame/` → `JumpingGame/` (typo fix)
-- ✅ `lab10/` → `LinkedListsBasics/`
-- ✅ `lab11/` → `LinkedListsAdvanced/`
-- ✅ `lab12/` → `GenericProgramming/`
-- ✅ `lab13/` → `StackImplementations/`
-
-**File naming standardized:**
-- Generic names like `lab10_1.c` → Descriptive names like `linked_list.c`
-- Stack implementations: `lab13_1/` → `LinkedListStack/` (with `main.c`, `stack.c`, `stack.h`)
-- Game files: `JGmain.c`, `JGfunc.c`, `JGheader.h` → `main.c`, `game.c`, `game.h`
-
----
 
 ## 📄 License
 
