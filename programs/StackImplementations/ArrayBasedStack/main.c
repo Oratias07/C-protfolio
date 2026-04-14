@@ -1,4 +1,4 @@
-#include "Stack_Header_Array.h"
+#include "stack.h"
 
 int main()
 {

@@ -1,4 +1,4 @@
-#include "Stack_Header_Array.h"
+#include "stack.h"
 
 // initialization of a new stack with capacity of size elements
 void InitStack(PStack s, int size)

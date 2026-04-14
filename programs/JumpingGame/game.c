@@ -1,4 +1,4 @@
-#include "JGheader.h"
+#include "game.h"
 
 // adds a node to the head of the node list
 void add_as_first(PkNode node, pNodeList node_list)

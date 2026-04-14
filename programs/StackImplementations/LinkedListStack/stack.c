@@ -1,4 +1,4 @@
-#include "lab13_1.h"
+#include "stack.h"
 
 void Push(PStack s, int element)
 {
